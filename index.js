@@ -1,4 +1,9 @@
+const Engineer = require("./lib/Engineer.js");
+const Intern = require("./lib/Intern.js");
+const Manager = require("./lib/Manager.js");
+
 const inquirer = require("inquirer");
+
 
 let profileArr = [];
 
@@ -36,7 +41,7 @@ const getInfo = () => {
             const manager = new Manager(response.name, response.id, response.email, response.phone);
             profileArr.push(manager);
             
-            console.log(manager);
+            console.log(profileArr);
 
             if (response.addEmployee) {
                 addTeammate();
@@ -89,7 +94,7 @@ const engineerQuestion = () => {
                 message: "'What is the engineer's email address?"
             },
             {
-                type: 'list',
+                type: 'input',
                 name: 'github',
                 message: "What is the engineer's GitHub username?"
                 
@@ -104,7 +109,7 @@ const engineerQuestion = () => {
             const engineer = new Engineer(response.name, response.id, response.email, response.github);
             profileArr.push(engineer);
             
-            console.log(engineer);
+            console.log(profileArr);
 
             if (response.addEmployee) {
                 addTeammate();
@@ -134,7 +139,7 @@ const internQuestion = () => {
                 message: "'What is the intern's email address?"
             },
             {
-                type: 'list',
+                type: 'input',
                 name: 'school',
                 message: "What is the intern's school?"
                 
@@ -149,15 +154,20 @@ const internQuestion = () => {
             const intern = new Intern(response.name, response.id, response.email, response.school);
             profileArr.push(intern);
             
-            console.log(engineer);
-
+            console.log(profileArr);
+            // var projectData = profileArr; 
             if (response.addEmployee) {
                 addTeammate();
             } else {
+                // createHtml("team.html", generateHtml(projectData));
                 console.log("Your team is complete!")
                 return;
             }
         })
 }
+
+// const generateHtml = (projectData) => {
+
+// }
 
 getInfo();
