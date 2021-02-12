@@ -1,10 +1,9 @@
-const { TestScheduler } = require('jest');
 const Engineer = require('../lib/Engineer.js');
 
-test('creates an engineer object', () => {
-    const engineer = new Engineer('Nate', '1', 'n8dogg59@hotmail.com');
+test('get the GitHub username of the employee from created object through the getGithub() function', () => {
+    const userName = "n8dogg59";
+    const engineer = new Engineer('Nate', '1', 'n8dogg59@hotmail.com', userName);
 
-    expect(engineer.name).toBe('Nate');
-    expect(engineer.id).toBe('1');
-    expect(engineer.email).toBe('n8dogg59@hotmail.com')
+    expect(engineer.getGithub()).toBe('n8dogg59');
 })
+
