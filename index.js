@@ -7,6 +7,7 @@ const fs = require("fs");
 
 let profileArr = [];
 
+// prompt the user to enter the Manager info and calls the function to ask if they would like to add another employee
 const getInfo = () => {
         inquirer
             .prompt([
@@ -38,6 +39,7 @@ const getInfo = () => {
                 }
             ])
             .then(response => {
+                // creates a new manager object
                 const manager = new Manager(response.name, response.id, response.email, response.phone);
                 profileArr.push(manager);
                 console.log(profileArr);
@@ -53,7 +55,7 @@ const getInfo = () => {
                 }
             })
 
-
+    // Asks if the user would like to add an intern or engineer then calls the appropriate function
     const addTeammate = () => {
         inquirer
             .prompt([
@@ -77,6 +79,7 @@ const getInfo = () => {
             })
     }
 
+    // Asks the user for the engineer information and then calls the function to add that information to the html page
     const engineerQuestion = () => {
         inquirer
             .prompt([
@@ -108,6 +111,7 @@ const getInfo = () => {
                 }
             ])
             .then(response => {
+                // creates a new engineer object
                 const engineer = new Engineer(response.name, response.id, response.email, response.github);
                 profileArr.push(engineer);
                 console.log(profileArr);
@@ -124,6 +128,7 @@ const getInfo = () => {
             })
     }
 
+    // Asks the user for the intern information and then calls the function to add that information to the html page
     const internQuestion = () => {
         inquirer
             .prompt([
@@ -155,6 +160,7 @@ const getInfo = () => {
                 }
             ])
             .then(response => {
+                // creates a new intern object
                 const intern = new Intern(response.name, response.id, response.email, response.school);
                 profileArr.push(intern);
                 console.log(profileArr);
@@ -172,6 +178,7 @@ const getInfo = () => {
     }
 }
 
+// this function creates the initial html before adding the employee information
 function initialHTML() {
     const html = `<!DOCTYPE html>
     <html lang="en">
@@ -196,6 +203,7 @@ function initialHTML() {
     console.log("Starter HTML created!")
 }
 
+// this function determines if the employee is a manager, engineer, or intern and then adds the appropriate information to the html
 const addEmployee = (info, role) => {
     return new Promise(function(resolve, reject) {
     let newHtml = '';
@@ -268,6 +276,7 @@ const addEmployee = (info, role) => {
     })
 }
 
+// adds the final html after the employee cards
 const finalHTML = () => {
     const html = ` </div>
     </div>
@@ -283,6 +292,6 @@ const finalHTML = () => {
     console.log("HTML Created!");
 }
 
-
+// these two functions get everything started
 initialHTML();
 getInfo();

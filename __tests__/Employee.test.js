@@ -1,3 +1,5 @@
+// tests all the functions that the three employees share
+
 const Employee = require('../lib/Employee.js');
 
 test('creates an engineer object', () => {
