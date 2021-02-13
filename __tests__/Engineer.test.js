@@ -7,3 +7,9 @@ test('get the GitHub username of the employee from created object through the ge
     expect(engineer.getGithub()).toBe('n8dogg59');
 })
 
+test('getRole() function should return "Engineer"', () => {
+    const jobType = "Engineer";
+    const engineer = new Engineer('Nate', '1', 'n8dogg59@hotmail.com', 'n8dogg59');
+    expect(engineer.getRole()).toBe(jobType);
+})
+
