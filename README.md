@@ -25,3 +25,6 @@ Nate Schroeder
 
 ## Github Repository
 https://github.com/n8dogg59/team-profile-generator
+
+## Screenshot
+![](screenshot\htmlScreenShot.jpg)
