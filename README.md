@@ -27,4 +27,4 @@ Nate Schroeder
 https://github.com/n8dogg59/team-profile-generator
 
 ## Screenshot
-![](screenshot\htmlScreenShot.jpg)
+![html page screenshot](./screenshot/html-screenshot.jpg)
