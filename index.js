@@ -14,35 +14,71 @@ const getInfo = () => {
                 {
                     type: 'input',
                     name: 'name',
-                    message: "'What is the team manager's name?"
+                    message: "What is the team manager's name?",
+                    validate: nameInput => {
+                        if (nameInput) {
+                            return true;
+                        } else {
+                            console.log("Please enter the manager's name.");
+                            return false;
+                        }
+                    }
                 },
                 {
                     type: 'input',
                     name: 'id',
-                    message: "What is the team manager's employee ID?"
+                    message: "What is the team manager's employee ID?",
+                    validate: idInput => {
+                        if (idInput) {
+                            return true;
+                        } else {
+                            console.log("Please enter the manager's employee ID.");
+                            return false;
+                        }
+                    }
                 },
                 {
                     type: 'input',
                     name: 'email',
-                    message: "'What is the team manager's email address?"
+                    message: "What is the team manager's email address?",
+                    validate: function (emailInput) {
+                        var format = /\S+@\S+\.\S+/;
+                        valid = format.test(emailInput)
+                        if (valid) {
+                            return true;
+                        } else {
+                            console.log("\n" + "Please enter the manager's email and make sure it's in the correct format.");
+                            return false;
+                        }
+                    }
                 },
                 {
                     type: 'input',
                     name: 'phone',
-                    message: "What is the team manager's phone number?"
+                    message: "What is the team manager's phone number? (ex 512-555-1234)",
+                    validate: function (emailInput) {
+                        var format = /\S+-\S+\-\S+/;
+                        valid = format.test(emailInput)
+                        if (valid) {
+                            return true;
+                        } else {
+                            console.log("\n" + "Please enter the manager's email and make sure it's in the correct format.");
+                            return false;
+                        }
+                    }
                     
                 },
                 {
                     type: 'confirm',
                     name: 'addEmployee',
                     message: 'Would you like to add another team member to finish building the team?',
+                    default: false,
                 }
             ])
             .then(response => {
                 // creates a new manager object
                 const manager = new Manager(response.name, response.id, response.email, response.phone);
                 profileArr.push(manager);
-                console.log(profileArr);
 
                 let role = "Manager";
                 addEmployee(manager, role);
@@ -86,22 +122,56 @@ const getInfo = () => {
                 {
                     type: 'input',
                     name: 'name',
-                    message: "'What is the engineer's name?"
+                    message: "What is the engineer's name?",
+                    validate: nameInput => {
+                        if (nameInput) {
+                            return true;
+                        } else {
+                            console.log("Please enter the engineer's name.");
+                            return false;
+                        }
+                    }
                 },
                 {
                     type: 'input',
                     name: 'id',
-                    message: "What is the engineer's employee ID?"
+                    message: "What is the engineer's employee ID?",
+                    validate: idInput => {
+                        if (idInput) {
+                            return true;
+                        } else {
+                            console.log("Please enter the engineer's employee ID.");
+                            return false;
+                        }
+                    }
                 },
                 {
                     type: 'input',
                     name: 'email',
-                    message: "'What is the engineer's email address?"
+                    message: "What is the engineer's email address?",
+                    validate: function (emailInput) {
+                        var format = /\S+@\S+\.\S+/;
+                        valid = format.test(emailInput)
+                        if (valid) {
+                            return true;
+                        } else {
+                            console.log("\n" + "Please enter the engineer's email and make sure it's in the correct format.");
+                            return false;
+                        }
+                    }
                 },
                 {
                     type: 'input',
                     name: 'github',
-                    message: "What is the engineer's GitHub username?"
+                    message: "What is the engineer's GitHub username?",
+                    validate: github => {
+                        if (github) {
+                            return true;
+                        } else {
+                            console.log("Please enter the engineer's GitHub username.");
+                            return false;
+                        }
+                    }
                     
                 },
                 {
@@ -135,22 +205,56 @@ const getInfo = () => {
                 {
                     type: 'input',
                     name: 'name',
-                    message: "'What is the intern's name?"
+                    message: "What is the intern's name?",
+                    validate: nameInput => {
+                        if (nameInput) {
+                            return true;
+                        } else {
+                            console.log("Please enter the intern's name.");
+                            return false;
+                        }
+                    }
                 },
                 {
                     type: 'input',
                     name: 'id',
-                    message: "What is the intern's employee ID?"
+                    message: "What is the intern's employee ID?",
+                    validate: idInput => {
+                        if (idInput) {
+                            return true;
+                        } else {
+                            console.log("Please enter the intern's employee ID.");
+                            return false;
+                        }
+                    }
                 },
                 {
                     type: 'input',
                     name: 'email',
-                    message: "'What is the intern's email address?"
+                    message: "What is the intern's email address?",
+                    validate: function (emailInput) {
+                        var format = /\S+@\S+\.\S+/;
+                        valid = format.test(emailInput)
+                        if (valid) {
+                            return true;
+                        } else {
+                            console.log("\n" + "Please enter the intern's email and make sure it's in the correct format.");
+                            return false;
+                        }
+                    }
                 },
                 {
                     type: 'input',
                     name: 'school',
-                    message: "What is the intern's school?"
+                    message: "What is the intern's school?",
+                    validate: idInput => {
+                        if (idInput) {
+                            return true;
+                        } else {
+                            console.log("Please enter the intern's school or put 'No School' if they are not in school.");
+                            return false;
+                        }
+                    }
                     
                 },
                 {
@@ -212,55 +316,58 @@ const addEmployee = (info, role) => {
     const email = info.getEmail();
     if (role === 'Manager') {
         const phone = info.officeNumber();
-        newHtml = `<div class="col-4">
-        <div class="card mx-auto mb-4 shadow" style="width: 20rem">
-            <div class="card-header bg-primary text-light">
-                <h2 class="card-title">${name}</h2> 
-                <h3 class="card-title"><i class="fas fa-mug-hot"></i> Manager</h3>
-            </div>
-            <div class="card-body bg-light">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">ID: ${id}</li>
-                    <li class="list-group-item">Email: <a href="mailto:${email}">${email}</a></li>
-                    <li class="list-group-item">Phone Number: ${phone}</li>
-                </ul>
-            </div>
-        </div>
-    </div>`;
+        newHtml = `
+                <section class="col-4">
+                    <div class="card mx-auto mb-4 shadow" style="width: 20rem">
+                        <div class="card-header bg-primary text-light">
+                            <h2 class="card-title">${name}</h2> 
+                            <h3 class="card-title"><i class="fas fa-mug-hot"></i> Manager</h3>
+                        </div>
+                        <div class="card-body bg-light">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">ID: ${id}</li>
+                                <li class="list-group-item">Email: <a href="mailto:${email}">${email}</a></li>
+                                <li class="list-group-item">Phone Number: ${phone}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>`;
     } else if (role === 'Engineer') {
         const github = info.getGithub();
-        newHtml = `<div class="col-4">
-        <div class="card mx-auto mb-4 shadow" style="width: 20rem">
-            <div class="card-header bg-primary text-light">
-                <h2 class="card-title">${name}</h2>
-                <h3 class="card-title"><i class="fas fa-glasses"></i> Engineer</h3>
-            </div>
-            <div class="card-body bg-light">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">ID: ${id}</li>
-                    <li class="list-group-item">Email: <a href="mailto:${email}">${email}</a></li>
-                    <li class="list-group-item">GitHub: <a href="https://github.com/${github}">${github}</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>`;
+        newHtml = `
+                <section class="col-4">
+                    <div class="card mx-auto mb-4 shadow" style="width: 20rem">
+                        <div class="card-header bg-primary text-light">
+                            <h2 class="card-title">${name}</h2>
+                            <h3 class="card-title"><i class="fas fa-glasses"></i> Engineer</h3>
+                        </div>
+                        <div class="card-body bg-light">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">ID: ${id}</li>
+                                <li class="list-group-item">Email: <a href="mailto:${email}">${email}</a></li>
+                                <li class="list-group-item">GitHub: <a href="https://github.com/${github}">${github}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>`;
     } else if (role === 'Intern') {
         const school = info.getSchool();
-        newHtml = `<div class="col-4">
-        <div class="card mx-auto mb-4 shadow" style="width: 20rem">
-            <div class="card-header bg-primary text-light">
-                <h2 class="card-title">${name}</h2>
-                <h3 class="card-title"><i class="fas fa-user-graduate"></i> Intern</h3>
-            </div>
-            <div class="card-body bg-light">
-                <ul class="list-group list-group-flush">
-                    <li class="list-group-item">ID: ${id}</li>
-                    <li class="list-group-item">Email: <a href="mailto:${email}">${email}</a></li>
-                    <li class="list-group-item">School: ${school}</li>
-                </ul>
-            </div>
-        </div>
-    </div>`;
+        newHtml = `
+                <section class="col-4">
+                    <div class="card mx-auto mb-4 shadow" style="width: 20rem">
+                        <div class="card-header bg-primary text-light">
+                            <h2 class="card-title">${name}</h2>
+                            <h3 class="card-title"><i class="fas fa-user-graduate"></i> Intern</h3>
+                        </div>
+                        <div class="card-body bg-light">
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">ID: ${id}</li>
+                                <li class="list-group-item">Email: <a href="mailto:${email}">${email}</a></li>
+                                <li class="list-group-item">School: ${school}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>`;
     }
     fs.appendFile("./dist/team.html", newHtml, function(err) {
         if (err) {
@@ -278,11 +385,11 @@ const addEmployee = (info, role) => {
 
 // adds the final html after the employee cards
 const finalHTML = () => {
-    const html = ` </div>
-    </div>
-    
-</body>
-</html>`;
+    const html = ` 
+            </div>
+        </div>
+    </body>
+    </html>`;
 
     fs.appendFile("./dist/team.html", html, function (err) {
         if (err) {
