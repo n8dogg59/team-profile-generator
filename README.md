@@ -3,9 +3,6 @@
 ## Description
 This project utilized Object Oriented Programming to generate and HTML webpage with summaries for each person on a software engineering team.
 
-## Website
-https://n8dogg59.github.io/team-profile-generator/
-
 ## Features
 * Each function has a test that makes sure the function is operational before using it.
 * Inquirer prompt is used to gather the necessary information about each employee and adds that information to an array.
@@ -15,6 +12,7 @@ https://n8dogg59.github.io/team-profile-generator/
 * The user is able to add an unlimited number of engineer's or intern's
 
 ## Demonstration Video
+To view a demonstration of how this application works please click on this YouTube link https://www.youtube.com/watch?v=QUHm4Y2-NPg&feature=youtu.be.
 
 ## Built With
 * JavaScript
